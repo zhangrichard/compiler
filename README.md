@@ -16,7 +16,8 @@ I have implement the language features as followed
 
 Use make file to run the example test7
 
-```	./antlr3 Lex.g
+```	
+	./antlr3 Lex.g
 	./antlr3 Syn.g
 	javac TokenConv.java
 	java TokenConv Syn.tokens Irt.java 
