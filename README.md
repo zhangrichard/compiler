@@ -13,6 +13,8 @@ I have implement the language features as followed
 * Boolean expressions (true, false, !, &)
 
 
+* output the haskell
+* use haskell evalutor to eval test7.hs
 
 Use make file to run the example test7
 
