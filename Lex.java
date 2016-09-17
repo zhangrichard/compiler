@@ -1,6 +1,4 @@
-
-// $ANTLR 3.5.2 Lex.g 2016-04-28 20:39:35
-
+// $ANTLR 3.5.2 Lex.g 2016-09-17 22:47:18
 
 import org.antlr.runtime.*;
 import java.util.Stack;
