@@ -9,7 +9,9 @@ class camle {
   public static void main(String[] args)
   {
     System.out.println("CAMLE - Compiler to Abstract Machine for Language Engineering");
-    String opt = "", inFile = "", outFile = "";
+
+    String opt = "", inFile = "", outFile = "",hsFile = "";
+
     int pos;
     if (Array.getLength(args) == 1 && args[0].charAt(0) != '-') {
       opt = "";
@@ -27,12 +29,19 @@ class camle {
       System.out.println("  -lex");
       System.out.println("  -syn");
       System.out.println("  -irt");
+
+      System.out.println("  -hs");
+
       System.exit(1);
     }
     outFile = inFile;
     if ((pos = outFile.lastIndexOf('.')) != -1)
       outFile = outFile.substring(0, pos);
+
+    hsFile = outFile+".hs";
     outFile = outFile+".ass";
+    
+
 
     try {
       CharStream cs = new ANTLRFileStream(inFile);			
@@ -54,6 +63,9 @@ class camle {
         System.out.println(parserTree.toStringTree());
         System.exit(0);
       }
+
+
+
       CommonTreeNodeStream ast = new CommonTreeNodeStream(parserTree);
       IRTree newIrt = Irt.convert(parserTree);
       if (opt.equals("-irt")) {
@@ -63,6 +75,16 @@ class camle {
       }
       PrintStream o = new PrintStream(new FileOutputStream(outFile));
       Cg.program(newIrt, o);
+
+      if (opt.equals("-hs")) {
+        IRTree hsIrt = IrtHs.convert(parserTree);
+        System.out.println(hsIrt);
+        PrintStream o2 = new PrintStream(new FileOutputStream(hsFile));
+        o2.println(hsIrt.toString());
+        System.exit(0);
+      }
+      
+
     }
     catch(Exception e) {
       System.err.println("exception: "+e);
