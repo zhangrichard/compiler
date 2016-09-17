@@ -158,9 +158,9 @@ public class IrtHs
       irt.addSub(irt2);
     }
     else if (tt == READ){
-      irt.setOp("READ");
+      irt.setOp("Read");
       ast1 = (CommonTree)ast.getChild(0);
-      String text = "("+ast1.getText()+")";
+      String text = ast1.getText();
       irt.addSub(new IRTree("\""+text+"\""));
                 
     }
@@ -364,7 +364,7 @@ public class IrtHs
      Token t = ast.getToken();
     int tt = t.getType();
     if (tt == TIMES){
-      irt.setOp("Mul");
+      irt.setOp("Mult");
       ast1 = (CommonTree)ast.getChild(0);
       ast2 = (CommonTree)ast.getChild(1);
       factor(ast1,irt1);
